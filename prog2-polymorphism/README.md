@@ -1,5 +1,5 @@
 # Program 2: Polymorphism
-This program will be as simple as I can make it since you'll have entire classes devoted to it in University.
+### This program will be as simple as I can make it since you'll have entire classes devoted to it in University.
 
 1. Make Square and Circle classes.
 2. Make a base class for both called Shape
