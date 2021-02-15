@@ -1,6 +1,6 @@
 # Program 2: Polymorphism
 ## Instructions: 
-# This program will be as simple as I can make it since you'll have entire classes devoted to it in University.
+#### This program will be as simple as I can make it since you'll have entire classes devoted to it in University.
 
 > 1. Make Square and Circle classes.
 > 2. Make a base class for both called Shape
@@ -8,7 +8,7 @@
 > 4. (Size of an edge for square and the radius for circle)
 > 5. Put those two methods where you think they should go.  Avoid duplication and make sure Shape is polymorphic
 
-#To test these classes, do the following
+#### To test these classes, do the following
 
 > 1. Make a vector of Shape pointers
 > 2. (If you haven't ever seen vectors, it's "std::vector<Shape*> shapes;")
