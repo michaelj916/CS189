@@ -6,7 +6,7 @@ Circle::Circle() { radius = 1; }
 // SetArea method for Circle class
 void Circle::SetSize(double r)
 {
-	r = radius;
+	radius = r;
 }
 
 // GetArea method for Circle class
