@@ -7,7 +7,7 @@ Square::Square() { edge = 2; }
 // SetSize method for square class
 void Square::SetSize(double e)
 {
-	e = edge;
+	edge = e;
 }
 
 // GetArea method for square class
