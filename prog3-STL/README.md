@@ -1,4 +1,4 @@
-# We are going to dive deep into a few of the stl containers because it is cool.  But in real life the whole point of stl is to keep you from having to write them yourselves.  So the first data structure homework is about using stl.
+#### We are going to dive deep into a few of the stl containers because it is cool.  But in real life the whole point of stl is to keep you from having to write them yourselves.  So the first data structure homework is about using stl.
 
 ## List, Vector, Stack, Queue, Set, Map, UnorderedMap, PriorityQueue
 
