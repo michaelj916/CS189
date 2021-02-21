@@ -17,4 +17,4 @@
 1. Make a priority queue that uses a Student's GPA for the sort criteria.  Add some Student objects and show that the next one that would be popped (the top one) is the highest GPA
 2. Make a priority queue that uses a Student's Debt for the sort criteria.  Add some Student pointers for dynamically created Students and show the next one popped is the one with the least debt.
 
-# (a cheatsheet of the STL and algorithms)[https://github.com/gibsjose/cpp-cheat-sheet/blob/master/Data%20Structures%20and%20Algorithms.md]
+# [a cheatsheet of the STL and algorithms](https://github.com/gibsjose/cpp-cheat-sheet/blob/master/Data%20Structures%20and%20Algorithms.md)
