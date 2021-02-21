@@ -7,7 +7,7 @@
 3. Use an iterator loop to print all those values on the screen
 4. Make a Vector of Students.  Add some Student objects to it
 5. Make a Stack of Student Pointers.  Push and pop some dynamically created Students to it.  Make sure you don't leak memory
-  1. As in, have a for loop add in 10 dynamically created objects.  Then have another loop correctly delete the objects, not just remove the pointers from the stack.  SP21 - don't worry about using a loop to add anything.  It is important for the deleting step, but I don't want people getting stuck on making the test data.
+> As in, have a for loop add in 10 dynamically created objects.  Then have another loop correctly delete the objects, not just remove the pointers from the stack.  SP21 - don't worry about using a loop to add anything.  It is important for the deleting step, but I don't want people getting stuck on making the test data.
 6. Make a Set of ints.  Add some numbers to it
 7. Make a Map of strings to ints.  Put some movie titles and the year they came out in it
 8. Do #7 with an unordered map
