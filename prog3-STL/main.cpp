@@ -19,7 +19,6 @@ int main()
 		myList.push_back(i);
 
 	// iterate through list, print out each value
-	std::for_each(myList.begin(), myList.end(), [](int n) { std::cout << n << std::endl; });
 	for (std::list<int>::iterator it = myList.begin(); it != myList.end(); it++)
 		std::cout << *it << std::endl;
 
@@ -78,23 +77,12 @@ int main()
 
 	// clearing unorderd_map
 	uMoviesByYear.clear();
-
-	/*-----------------------------------------------------------------------*/
-	/*
-	struct ByGPA {
-
-	};
-
-	struct ByDebt {
-		bool operator()(const Student& s1, const Student& s2)
-		{
-			if (s1.GetDebt > s2.GetDebt) return true;
-			if (s1.GetDebt < s2.GetDebt) return false;
-		}
-	};
-
-	std::priority_queue<Student, std::vector<Student>, Student::ByGPA> myGPAPq;
-	*/
-
+	
+	// priority queue sorted by Student GPA
+	typedef std::priority_queue<Student, std::vector<Student>, Student::ByGPA> pqGPA;
+	
+	// priority queue sorted by Student Debt
+	typedef std::priority_queue<Student, std::vector<Student>, Student::ByDebt> pqDebt;
+	
 	return 0;
 }

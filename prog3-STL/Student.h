@@ -12,6 +12,8 @@ public:
 	std::string GetName();
 	double GetGPA();
 	double GetDebt();
+	struct ByGPA;
+	struct ByDebt;
 	~Student();
 private:
 	double GPA;

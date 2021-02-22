@@ -38,4 +38,20 @@ double Student::GetDebt()
 	return StudentDebt;
 }
 
+struct Student::ByGPA {
+	bool operator()(const Student &tStudent1, const Student &tStudent2)
+	const
+	{
+	return tStudent1.GPA < tStudent2.GPA;
+	}
+};
+
+struct Student::ByDebt {
+	bool operator()(const Student &tStudent1, const Student &tStudent2)
+	const
+	{
+	return tStudent1.StudentDebt < tStudent2.StudentDebt;
+	}
+};
+
 Student::~Student() {}
