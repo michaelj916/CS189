@@ -6,9 +6,9 @@
 template<typename T> // Whatever main puts in the <> gets find-replaced to every "T"
 class Vector
 {
-	T* mData;
+	T* mData = nullptr;
 	int mSize; // Size is how much data.  Capacity is how much memory.
-	int mCapacity = 15;// For testing purposes, initialize this to 15.  Whenever you allocate new memory, double it.
+	int mCapacity = 15; // For testing purposes, initialize this to 15.  Whenever you allocate new memory, double it.
 
 	T mUndefined;// Lots of STL functions say that doing something naughty gets "undefined behavior".  It could throw, crash, make you eggs, or return nonsense.
 				// Return this undefined one if anybody ever tries to go out of bounds. 
@@ -19,6 +19,7 @@ public:
 	{
 		mSize = 0;
 		mData = nullptr;
+		ReAllocate(2);
 		Reserve( 15 ); // If you put a new in here, you'd be duplicating the reserve code.  Feel free to call non-virtual methods of your own here.
 		// (You can't call a virtual method because the whole object isn't finished constructing yet.)
 	}
