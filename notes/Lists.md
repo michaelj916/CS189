@@ -20,8 +20,8 @@ arr[8] = 9; // crash
 	- Throw away the chian
 
 ## List's Contract
-[Vector](https://www.cplusplus.com/reference/vector/vector/")
-[List](https://www.cplusplus.com/reference/list/list/")
+[Vector](https://www.cplusplus.com/reference/vector/vector/)
+[List](https://www.cplusplus.com/reference/list/list/)
 - The word "list" has no meaning since it is abstract. So we've decided that something with these methods at these speeds are "list"
 	- Size in O(1)
 	- Push or Pop Back in O(1)
