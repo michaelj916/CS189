@@ -1,31 +1,35 @@
 #include <iostream>
 #include "List.h"
+#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-	List<int> tSomeInts;
+    List<int> tList;
 
-	tSomeInts.PushBack( 14 );
-	tSomeInts.PushBack( 1 );
-	tSomeInts.PushBack( 54 );
-	tSomeInts.PushBack( 25 );
+    tList.PushFront(12);
+    tList.PushFront(22);
+    tList.PushFront(32);
+    tList.PushFront(42);
+    tList.PushFront(52);
+    tList.PushFront(62);
+    cout << "Size: " << tList.Size() << " // 6\nFront: " << tList.Front() <<
+        " // 62\nAt: " << tList.At(0) << " // 42";
 
-	List<int> tIntCopy = tSomeInts;
 
-	tSomeInts.PopBack();
-
-	cout << "This better say 4: " << tIntCopy.Size() << endl;
-	cout << "This better say 14: " << tSomeInts.Front() << endl;
-	cout << "This better say 54: " << tSomeInts.Back() << endl;
-
-//	cout << "This better say 14 1 54" << endl;
-//	for (List<int>::Iterator iter = tSomeInts.Begin(); !iter.IsEqual(tSomeInts.End()); iter.Next())
-//	{
-		// REMEMBER THIS LOOP!  It is the grown-up version of "for( int i = 0; i < count; i++ )"
-//		cout << iter.GetData() << " " << endl;
-//	}
-	return 0;
+    tList.PushBack(13);
+    tList.PushBack(23);
+    tList.PushBack(33);
+    tList.PushBack(43);
+    tList.PushBack(53);
+    cout << "\nSize: " << tList.Size() << " // 11\nBack: " << tList.Back() <<
+        " // 53\nAt: " << tList.At(5) << " // 13\n\n";
+    
+    for (List<int>::Iterator iter = tList.Begin(); !iter.IsEqual(tList.End()); iter.Next())
+    {
+        // REMEMBER THIS LOOP!  It is the grown-up version of "for( int i = 0; i < count; i++ )"
+        cout << "List Data       " << iter.GetData() << " " << endl;
+    }
+    return 0;
 }
-

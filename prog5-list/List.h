@@ -5,16 +5,14 @@ class List
 {
 	struct ListNode
 	{
-		ListNode()
-		{
-		}
+		ListNode() {}
 		T mData;
-		ListNode* mPrev;
-		ListNode* mNext;
+		ListNode* mPrev = nullptr;
+		ListNode* mNext = nullptr;
 	};
 
-	ListNode* mHead;
-	ListNode* mTail;
+	ListNode* mHead = nullptr;
+	ListNode* mTail = nullptr;
 	mutable T mUndefined;
 	int mSize = 0;
 
@@ -23,8 +21,6 @@ public:
 	List()
 	{
 		// Getting Head and Tail correct is not part of the Big 3.  It is hella mega required no matter what.
-		//mHead = nullptr;
-		//mTail = nullptr;// bleh.  Full of crash.
 		mHead = new ListNode;
 		mTail = new ListNode;
 		mHead->mNext = mTail;
@@ -34,40 +30,42 @@ public:
 	}
 
 	// copy constructor
-	List( const List& tOther )
+	List(const List& tOther)
 	{
-		//*this = tOther;
-		
+		*this = tOther;
 	}
 
 	// assignment operator
-	List& operator = ( const List& tRHS )
+	List& operator = (const List& tRHS)
 	{
+		// check if L1 == L2 return L1
+		if (this == &tRHS)
+			return *this;
+		
+		Clear();
+
+		for (int i = 0; i < tRHS.Size(); i++)
+			this->mHead->mNext = tRHS.mHead->mNext;
+
+		return *this;
 	}
 
 	~List()
 	{
 		//  maybe add bounds check and recursively call PopFront()
-
+		Clear();
 		delete mHead;
 		delete mTail;
-		mSize = 0;
 	}
 
-	void PushFront( const T& tWhat )
+	void PushFront(const T& tWhat)
 	{
-		// front of the list is accessed thorugh: mTail->mPrev
-		// add tWhat to front of list
-		mTail->mPrev->mData = tWhat;
-		mSize++;
+		Insert(Begin(), tWhat);
 	}
 
 	void PopFront()
 	{
-		// mHead->mNext = nullptr;
-		// remove first item in list
-		// mHead->mNext->mData = NULL;
-		mSize--;
+		Erase(Iterator(Begin()));
 	}
 
 	T& Front()
@@ -76,24 +74,18 @@ public:
 		return mHead->mNext->mData;
 	}
 
-	void PushBack( const T& tWhat )
+	void PushBack(const T& tWhat)
 	{
-		// back of list is accessed through: mHead->mNext
-		// add tWhat to back of list
-		mHead->mNext->mData = tWhat;
-		mSize++;
+		Insert(End(), tWhat);
 	}
 
 	void PopBack()
 	{
-		// mTail->mPrev = nullptr
-		// remove last item in list 
-		// mTail->mPrev->mData = NULL;
-		mSize--;
+		Erase(Iterator(mTail->mPrev));
 	}
 
 	T& Back()
-	{	
+	{
 		// back of the list is: mTail -> mPrev -> mData
 		return mTail->mPrev->mData;
 	}
@@ -105,76 +97,89 @@ public:
 
 	void Clear()
 	{
-		// loop through size, clear each data, decrease size
-		for (int i = 0; i < mSize; i++)
-		{
-			mHead->mNext->mData = NULL;
-			mSize--
-		}
-		mSize = 0;
+		while (Size() > 0)
+			PopBack();
 	}
 
-	T& At( int tWhere ) const
+	T& At(int tWhere) const
 	{
-		
-		// return the value of the list At ( tWhere )
-		// iterate through nodes, return tWhere value of list
-		
-		
-		
-		return tWhere;
+		// if size <= parameter, return undefined
+		if (tWhere >= Size())
+			return mUndefined;
 
+		// create node and iterate through list until you arrive At(tWhere);
+		ListNode* walker = mHead->mNext;
+		for (int i = 0; i < tWhere; i++)
+			walker = walker->mNext;
+
+		// return walker data
+		return walker->mData;
 	}
 
-	///////////////////////////////////////////////////////////////////
-	// Iterators
-	
 	class Iterator
 	{
 		friend List;
 
-		ListNode* mCurrent;
+		ListNode* mCurrent = nullptr;
 		T mUndefined;
-
 	public:
-		Iterator( ListNode* tStart )
+		Iterator(ListNode* tStart)
 		{
+			mCurrent = tStart;
 		}
-
 		T& GetData()
 		{
-			return mUndefined;
+			return mCurrent->mData;
 		}
-
 		void Next()// As in "Move to the next item please"
 		{
+			mCurrent = mCurrent->mNext;
 		}
-
-		bool IsEqual( const Iterator& rhs )
+		bool IsEqual(const Iterator& rhs)
 		{
-			return false;
+			return mCurrent == rhs.mCurrent;
 		}
 	};
 
-	Iterator Insert( Iterator tWhere, const T& tWhat )
+	Iterator Insert(Iterator tWhere, const T& tWhat)
 	{
+		ListNode* new_node = new ListNode;
+		new_node->mData = tWhat;
+		
+		new_node->mPrev = tWhere.mCurrent->mPrev;
+		tWhere.mCurrent->mPrev->mNext = new_node;
+
+		new_node->mNext = tWhere.mCurrent;
+		tWhere.mCurrent->mPrev = new_node;
+
+		mSize++;
+		return Iterator(new_node);
 	}
 
-	Iterator Erase( Iterator tWhere )
+	Iterator Erase(Iterator tWhere)
 	{
+		if (tWhere.mCurrent == mTail || tWhere.mCurrent == mHead)
+				return End();
+		
+		tWhere.mCurrent->mPrev->mNext = tWhere.mCurrent->mNext;
+		tWhere.mCurrent->mNext->mPrev = tWhere.mCurrent->mPrev;
+
+		ListNode* last = tWhere.mCurrent->mNext;
+		delete tWhere.mCurrent;
+		mSize--;
+		return Iterator(last);
 	}
 
 	Iterator Begin()
 	{
 		// First good data
-		return Iterator( nullptr );
+		return Iterator(mHead->mNext);
 	}
 
 	Iterator End()
 	{
 		// First Bad data
-		return Iterator( nullptr );
+		return Iterator(mTail);
 	}
-	
 };
 #endif // LIST_H
