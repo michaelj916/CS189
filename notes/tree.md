@@ -12,8 +12,7 @@
 	- O(n) Find
 
 ## Binary Search Tree
-[bt](imgs/btree.jfif)
-[btree](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.digilentinc.com%2Fwp-content%2Fuploads%2F2015%2F01%2Ftree.png&f=1&nofb=1)
+![Binary Tree](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.btechsmartclass.com%2Fdata_structures%2Fds_images%2FBST%2520Construction.png&f=1&nofb=1)
 - A BST is a structure where every piece of data has up to two children
 	- Draw this as an upside down tree with a single root (at the top)
 - Everything lower is somewhere on the left, and everything greater is on the right, **no duplicates**
