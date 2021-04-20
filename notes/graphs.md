@@ -36,5 +36,4 @@
 - If I draw a graph on the board, your eyes and brain could find a loop in moments
 - Computer doesn't have spacial awareness, and graphs don't exist in 2D space anyway
 	- Graphs don't have a shape either, just points and arrows
-	- half of the brain power to solve this is done the moment i draw it on the board
-##
+	- half of the brain power to solve this is done the moment i draw it on the board#
