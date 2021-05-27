@@ -34,7 +34,7 @@ int main()
 	PriorityQueue<SomeClass, SomeClass::BestIsLow> tLowWins;
 	PriorityQueue<SomeClass, SomeClass::BestIsHigh> tHighWins;
 
-	tLowWins.Push( SomeClass( 4 ) );
+	/*tLowWins.Push( SomeClass( 4 ) );
 	tLowWins.Push( SomeClass( 66 ) );
 	tLowWins.Push( SomeClass( 14 ) );
 	tLowWins.Push( SomeClass( 9 ) );
@@ -46,21 +46,21 @@ int main()
 	tLowWins.Push( SomeClass( 1 ) );
 	tLowWins.Push( SomeClass( 5 ) );
 	tLowWins.Push( SomeClass( 44 ) );
-	tLowWins.Push( SomeClass( 208 ) );
+	tLowWins.Push( SomeClass( 208 ) );*/
 
-	//tHighWins.Push( SomeClass( 4 ) );
-	//tHighWins.Push( SomeClass( 66 ) );
-	//tHighWins.Push( SomeClass( 14 ) );
-	//tHighWins.Push( SomeClass( 9 ) );
-	//tHighWins.Push( SomeClass( 33 ) );
-	//tHighWins.Push( SomeClass( 89 ) );
-	//tHighWins.Push( SomeClass( 42 ) );
-	//tHighWins.Push( SomeClass( 665 ) );
-	//tHighWins.Push( SomeClass( 9001 ) );
-	//tHighWins.Push( SomeClass( 1 ) );
-	//tHighWins.Push( SomeClass( 5 ) );
-	//tHighWins.Push( SomeClass( 44 ) );
-	//tHighWins.Push( SomeClass( 208 ) );
+	tHighWins.Push( SomeClass( 4 ) );
+	tHighWins.Push( SomeClass( 66 ) );
+	tHighWins.Push( SomeClass( 14 ) );
+	tHighWins.Push( SomeClass( 9 ) );
+	tHighWins.Push( SomeClass( 33 ) );
+	tHighWins.Push( SomeClass( 89 ) );
+	tHighWins.Push( SomeClass( 42 ) );
+	tHighWins.Push( SomeClass( 665 ) );
+	tHighWins.Push( SomeClass( 9001 ) );
+	tHighWins.Push( SomeClass( 1 ) );
+	tHighWins.Push( SomeClass( 5 ) );
+	tHighWins.Push( SomeClass( 44 ) );
+	tHighWins.Push( SomeClass( 208 ) );
 	//
 	//cout << "Low: ";
 	//while( !tLowWins.Empty() )
@@ -72,12 +72,12 @@ int main()
 	//cout << endl;
 	//
 	//cout << "High: ";
-	//while( !tHighWins.Empty() )
-	//{
-	//	cout << tHighWins.Top().mTestNumber << " ";
-	//	tHighWins.Pop();
-	//}
-	//cout << endl;
+	while( !tHighWins.Empty() )
+	{
+		cout << tHighWins.Top().mTestNumber << " ";
+		tHighWins.Pop();
+	}
+	cout << endl;
 
 	tLowWins.Clear();
 	tHighWins.Clear();

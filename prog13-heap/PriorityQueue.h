@@ -1,11 +1,8 @@
 #pragma once
-//#include <list>
 #include <vector>
-#include <iostream> // DEBUGGING
 template< typename T, typename C>
-class PriorityQueue // Omg this was fun to write.
+class PriorityQueue // Omg this was fun to write, says the professor.  -- omg this was difficult and challenging, says the student.
 {
-    //std::list<T> mData;// A list sorted by C.  Front will be the next to be picked.
 	std::vector<T> mHeap;    // a heap is a decorator around a vector
 	C mCompare;
 
@@ -16,52 +13,95 @@ public:
 	}
 	int Size()
 	{
-		// return mData.size();
 		return mHeap.size();
 	}
 	T& Top()
 	{
-		return mHeap.front(); // Arbitrarily deciding that you are added in back and the "best" according to Mr C goes front
-		// return mData.front();
+		return mHeap.front();
 	}
 	void Pop()
 	{
-	
-		
-		//mData.pop_front();
-	
+		int tRoot = 1;
+
+		mHeap[tRoot] = mHeap[Size() - 1];  // take the last item and put it in the roots spot
+		mHeap.pop_back();
+
+		int idx = Size() - 1;
+
+		while (tRoot != idx) // loop from root until end of heap
+		{
+			idx /= 2;  // update for parent
+			
+			int tLeft = tRoot * 2;
+			int tRight = (tRoot * 2) + 1;
+
+			if (mCompare(mHeap[tRoot], mHeap[tLeft]) && mCompare(mHeap[tRoot], mHeap[tRight]))  // if both children are greater
+			{
+				if (mCompare(mHeap[tRoot], mHeap[tLeft]))  // compare left and swap, update root index
+				{
+					T temp = mHeap[tRoot];
+					mHeap[tRoot] = mHeap[tLeft];
+					mHeap[tLeft] = temp;
+
+					tRoot += 1;
+				}
+				else if (mCompare(mHeap[tRoot], mHeap[tRight]))  // compare right and swap, update root index
+				{
+					T temp = mHeap[tRoot];
+					mHeap[tRoot] = mHeap[tRight];
+					mHeap[tRight] = temp;
+
+					tRoot += 2;
+				}
+				else
+				{
+					break;
+				}
+			}
+
+			if (mCompare(mHeap[tRoot], mHeap[tRoot / 2]))  // if we are better than our parent
+			{
+				// swap with it
+				T temp = mHeap[tRoot];
+				mHeap[tRoot] = mHeap[tRoot / 2];
+				mHeap[tRoot / 2] = temp;
+
+				tRoot /= 2;
+			}
+			else
+			{
+				break;
+			}
+		}
 	}
+
 	void Clear()
 	{
 		mHeap.clear();
-		//mData.clear();
 	}
-	void Push(T tWhat) 
+	void Push(T tWhat)
 	{
 		if (Empty())
 			mHeap.push_back(0);   // 0 index will always be 0
 
 		mHeap.push_back(tWhat);
 
-		std::cout << tWhat.mTestNumber << "\t<-TESTNUMBER" << std::endl;
+		int idx = Size() - 1;  // current index tWhat is at
 
-		for (auto iter = mHeap.begin(); iter != mHeap.end(); ++iter)
+		while (idx != 1) // loop until root
 		{
-			if (mCompare((*iter), tWhat))
-			{
+			idx /= 2;    // update current by its parent (i/2 = parent)
 
-				mHeap.insert(iter, tWhat);
+			if (mCompare(tWhat, mHeap[idx])) // if we are better than our parent
+			{
+				// swap with it
+				T temp = mHeap[idx];
+				mHeap[idx] = tWhat;
+				mHeap[idx * 2] = temp;
+
 			}
-			//std::cout << (*iter).mTestNumber << std::endl;
+			else   // stop if they are better than us
+				break;
 		}
-		
-		// This for loop here is the source of the O(n).  A heap is O(log n)
-		//auto iter = mData.begin();
-		//for(  ; iter != mData.end(); iter++ )// Looper's scope is inside the for even though it is outside the {}.  For's syntax sucks, but foreach can't change the container without doing a lot of work.
-		//{
-		//	if( !mCompare((*iter), tWhat) ) // "Start at left, better than you, better than you, oh I'm not better than you so I'll insert on your left
-		//		break;
-		//}
-		//mData.insert( iter, tWhat );// Insert means "before this iter"
 	}
 };
